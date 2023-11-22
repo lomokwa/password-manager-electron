@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Link from "next/link";
 import { Fragment, useState } from "react"
 
 export default function Register() {
@@ -15,7 +16,6 @@ export default function Register() {
 
   function handleSubmit() {
     console.log("Registering...")
-
   }
 
   return (
@@ -32,6 +32,9 @@ export default function Register() {
           <input onChange={updateFormData} id="confirmPassowrd" className="mt-3 text-2xl" type="password" placeholder="Confirm Password" />
         </div>
         <button className="mt-3 text-2xl" type="submit">Register</button>
+        <p>Already have an account?
+          <Link href="/login"> Login</Link>
+        </p>
       </form>
     </Fragment>
   )
