@@ -2,11 +2,19 @@
 import { useEffect, useState } from "react"
 
 export default function NewPasswordModal({ setModalOpen }) {
+  const [formData, setFormData] = useState({})
   const [password, setPassword] = useState('')
 
   useEffect(() => {
     generateNewPassword()
   }, [])
+
+  function updateFormData(e) {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value
+    });
+  }
 
   function generateNewPassword() {
     event.preventDefault();
@@ -14,12 +22,14 @@ export default function NewPasswordModal({ setModalOpen }) {
     setPassword(newPassword)
   }
 
+  const passwordList = []
+
   return (
     <div>
       <h1>New Password</h1>
-      <form className="flex flex-col w-1/2">
+      <form onSubmit={() => passwordList.push(password)} className="flex flex-col w-1/2">
         <label htmlFor="name">Service:</label>
-        <input type="text" name="name" id="name" className="text-gray-900" />
+        <input onChange={() => updateFormData} type="text" name="name" id="name" className="text-gray-900" />
         <div className="flex">
           <p>Password: {password}</p>
           <button onClick={() => generateNewPassword()} className="ml-2">
